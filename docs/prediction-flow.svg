@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="620" viewBox="0 0 1280 620" role="img" aria-labelledby="title desc">
+  <title id="title">Wine Quality Atelier prediction request flow</title>
+  <desc id="desc">A sequence style diagram describing how a user action becomes an API request, model prediction, and updated UI result.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#130c0e"/>
+      <stop offset="54%" stop-color="#2d131a"/>
+      <stop offset="100%" stop-color="#0f0d0d"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#432033"/>
+      <stop offset="100%" stop-color="#201113"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0%" stop-color="#1f5754"/>
+      <stop offset="100%" stop-color="#e4c987"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#e4c987"/>
+    </marker>
+    <style>
+      .title { fill: #f5ead7; font: 600 34px Segoe UI, Arial, sans-serif; }
+      .subtitle { fill: #b9ab98; font: 16px Segoe UI, Arial, sans-serif; }
+      .step-num { fill: #180f11; font: 800 18px Segoe UI, Arial, sans-serif; }
+      .step-title { fill: #f5ead7; font: 700 20px Segoe UI, Arial, sans-serif; }
+      .step-text { fill: #d8cbb8; font: 14px Segoe UI, Arial, sans-serif; }
+      .code { fill: #e4c987; font: 13px Consolas, monospace; }
+      .card { fill: url(#card); stroke: rgba(228,201,135,0.34); stroke-width: 1.3; }
+      .circle { fill: #e4c987; }
+      .line { stroke: #e4c987; stroke-width: 2.4; fill: none; marker-end: url(#arrow); }
+      .soft { stroke: rgba(228,201,135,0.18); stroke-width: 1.2; fill: none; }
+      .meter-bg { fill: rgba(245,234,215,0.09); stroke: rgba(228,201,135,0.28); }
+      .meter-fill { fill: url(#accent); }
+    </style>
+  </defs>
+
+  <rect width="1280" height="620" fill="url(#bg)"/>
+  <path d="M70 112 H1210 M70 536 H1210 M104 146 V500 M1176 146 V500" class="soft"/>
+  <text x="70" y="70" class="title">예측 요청 흐름</text>
+  <text x="70" y="98" class="subtitle">사용자가 와인 성분을 조정한 뒤 결과 화면이 갱신되기까지의 실행 순서</text>
+
+  <g transform="translate(82 166)">
+    <rect width="210" height="220" rx="10" class="card"/>
+    <circle cx="34" cy="34" r="18" class="circle"/>
+    <text x="28" y="41" class="step-num">1</text>
+    <text x="26" y="78" class="step-title">입력 조정</text>
+    <text x="26" y="112" class="step-text">사용자가 슬라이더, 숫자 입력,</text>
+    <text x="26" y="134" class="step-text">프리셋으로 성분값을 구성합니다.</text>
+    <text x="26" y="174" class="code">static/app.js</text>
+  </g>
+
+  <path d="M306 276 H374" class="line"/>
+
+  <g transform="translate(390 166)">
+    <rect width="220" height="220" rx="10" class="card"/>
+    <circle cx="34" cy="34" r="18" class="circle"/>
+    <text x="28" y="41" class="step-num">2</text>
+    <text x="26" y="78" class="step-title">JSON 요청</text>
+    <text x="26" y="112" class="step-text">11개 화학 성분을 담아</text>
+    <text x="26" y="134" class="step-text">예측 API로 전송합니다.</text>
+    <text x="26" y="174" class="code">POST /api/predict</text>
+  </g>
+
+  <path d="M624 276 H692" class="line"/>
+
+  <g transform="translate(708 166)">
+    <rect width="230" height="220" rx="10" class="card"/>
+    <circle cx="34" cy="34" r="18" class="circle"/>
+    <text x="28" y="41" class="step-num">3</text>
+    <text x="26" y="78" class="step-title">모델 예측</text>
+    <text x="26" y="112" class="step-text">저장된 모델을 로드하고</text>
+    <text x="26" y="134" class="step-text">확률, 등급, 점수를 계산합니다.</text>
+    <text x="26" y="174" class="code">wine_atelier/model.py</text>
+  </g>
+
+  <path d="M952 276 H1020" class="line"/>
+
+  <g transform="translate(1036 166)">
+    <rect width="210" height="220" rx="10" class="card"/>
+    <circle cx="34" cy="34" r="18" class="circle"/>
+    <text x="28" y="41" class="step-num">4</text>
+    <text x="26" y="78" class="step-title">결과 갱신</text>
+    <text x="26" y="112" class="step-text">확률 미터, 등급, 예상 품질,</text>
+    <text x="26" y="134" class="step-text">테이스팅 노트를 화면에 표시합니다.</text>
+    <text x="26" y="174" class="code">renderPrediction()</text>
+  </g>
+
+  <rect x="202" y="444" width="876" height="42" rx="21" class="meter-bg"/>
+  <rect x="202" y="444" width="680" height="42" rx="21" class="meter-fill"/>
+  <text x="230" y="471" fill="#180f11" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">고품질 와인 확률 · 예상 점수 · Feature Importance · 테이스팅 노트</text>
+</svg>
+

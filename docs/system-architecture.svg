@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760" role="img" aria-labelledby="title desc">
+  <title id="title">Wine Quality Atelier system architecture</title>
+  <desc id="desc">A complete architecture diagram showing browser UI, API server, model layer, dataset, training, saved model, and prediction response flow.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#170c0f"/>
+      <stop offset="48%" stop-color="#2a1118"/>
+      <stop offset="100%" stop-color="#100d0d"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#3a1821"/>
+      <stop offset="100%" stop-color="#1c1012"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" x2="1">
+      <stop offset="0%" stop-color="#9c7a35"/>
+      <stop offset="100%" stop-color="#e4c987"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#e4c987"/>
+    </marker>
+    <style>
+      .title { fill: #f5ead7; font: 600 34px Segoe UI, Arial, sans-serif; }
+      .subtitle { fill: #b9ab98; font: 16px Segoe UI, Arial, sans-serif; }
+      .box-title { fill: #f5ead7; font: 700 19px Segoe UI, Arial, sans-serif; }
+      .box-text { fill: #d8cbb8; font: 14px Segoe UI, Arial, sans-serif; }
+      .small { fill: #b9ab98; font: 12px Segoe UI, Arial, sans-serif; }
+      .tag { fill: #180f11; font: 700 12px Segoe UI, Arial, sans-serif; }
+      .line { stroke: #e4c987; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+      .soft-line { stroke: rgba(228,201,135,0.32); stroke-width: 1.5; fill: none; }
+      .box { fill: url(#panel); stroke: rgba(228,201,135,0.34); stroke-width: 1.4; filter: url(#shadow); }
+      .inner { fill: rgba(245,234,215,0.055); stroke: rgba(228,201,135,0.22); stroke-width: 1; }
+      .pill { fill: url(#gold); }
+    </style>
+  </defs>
+
+  <rect width="1280" height="760" fill="url(#bg)"/>
+  <path d="M70 118 H1210 M70 600 H1210 M120 80 V682 M1120 80 V682" class="soft-line"/>
+  <path d="M80 690 C260 620 394 735 560 672 C750 600 920 710 1185 636" fill="none" stroke="rgba(228,201,135,0.16)" stroke-width="2"/>
+
+  <text x="70" y="70" class="title">Wine Quality Atelier 작동 구조</text>
+  <text x="70" y="98" class="subtitle">프론트엔드, API 서버, 모델 학습, 저장된 모델, 예측 응답이 연결되는 전체 구조</text>
+
+  <rect x="70" y="150" width="245" height="170" rx="10" class="box"/>
+  <rect x="96" y="176" width="70" height="26" rx="13" class="pill"/>
+  <text x="112" y="194" class="tag">Client</text>
+  <text x="96" y="230" class="box-title">브라우저 UI</text>
+  <text x="96" y="260" class="box-text">static/index.html</text>
+  <text x="96" y="283" class="box-text">styles.css · app.js</text>
+  <text x="96" y="306" class="box-text">슬라이더 · 프리셋 · 결과 화면</text>
+
+  <rect x="385" y="132" width="270" height="206" rx="10" class="box"/>
+  <rect x="411" y="158" width="58" height="26" rx="13" class="pill"/>
+  <text x="426" y="176" class="tag">API</text>
+  <text x="411" y="212" class="box-title">Python HTTP Server</text>
+  <text x="411" y="242" class="box-text">app.py</text>
+  <text x="411" y="266" class="box-text">GET /api/metadata</text>
+  <text x="411" y="290" class="box-text">POST /api/predict</text>
+  <text x="411" y="314" class="box-text">POST /api/retrain</text>
+
+  <rect x="735" y="132" width="260" height="206" rx="10" class="box"/>
+  <rect x="761" y="158" width="78" height="26" rx="13" class="pill"/>
+  <text x="778" y="176" class="tag">Model</text>
+  <text x="761" y="212" class="box-title">wine_atelier/model.py</text>
+  <text x="761" y="242" class="box-text">load_dataset()</text>
+  <text x="761" y="266" class="box-text">ensure_model()</text>
+  <text x="761" y="290" class="box-text">predict()</text>
+  <text x="761" y="314" class="box-text">metadata()</text>
+
+  <rect x="70" y="430" width="255" height="170" rx="10" class="box"/>
+  <rect x="96" y="456" width="66" height="26" rx="13" class="pill"/>
+  <text x="111" y="474" class="tag">Data</text>
+  <text x="96" y="512" class="box-title">CSV 데이터</text>
+  <text x="96" y="542" class="box-text">data/winequality-red.csv</text>
+  <text x="96" y="565" class="box-text">1599개 레드 와인 샘플</text>
+  <text x="96" y="588" class="box-text">11개 화학 성분 + quality</text>
+
+  <rect x="385" y="430" width="270" height="170" rx="10" class="box"/>
+  <rect x="411" y="456" width="82" height="26" rx="13" class="pill"/>
+  <text x="428" y="474" class="tag">Train</text>
+  <text x="411" y="512" class="box-title">자동 학습 파이프라인</text>
+  <text x="411" y="542" class="box-text">StandardScaler</text>
+  <text x="411" y="565" class="box-text">RandomForestClassifier</text>
+  <text x="411" y="588" class="box-text">RandomForestRegressor</text>
+
+  <rect x="735" y="430" width="260" height="170" rx="10" class="box"/>
+  <rect x="761" y="456" width="82" height="26" rx="13" class="pill"/>
+  <text x="778" y="474" class="tag">Store</text>
+  <text x="761" y="512" class="box-title">저장된 모델</text>
+  <text x="761" y="542" class="box-text">models/*.joblib</text>
+  <text x="761" y="565" class="box-text">metadata.json</text>
+  <text x="761" y="588" class="box-text">성능 · 입력 범위 · 중요 변수</text>
+
+  <rect x="1060" y="240" width="150" height="250" rx="10" class="box"/>
+  <text x="1086" y="287" class="box-title">예측 응답</text>
+  <rect x="1086" y="316" width="98" height="30" rx="6" class="inner"/>
+  <text x="1104" y="336" class="small">확률</text>
+  <rect x="1086" y="356" width="98" height="30" rx="6" class="inner"/>
+  <text x="1104" y="376" class="small">등급</text>
+  <rect x="1086" y="396" width="98" height="30" rx="6" class="inner"/>
+  <text x="1104" y="416" class="small">점수</text>
+  <rect x="1086" y="436" width="98" height="30" rx="6" class="inner"/>
+  <text x="1104" y="456" class="small">노트</text>
+
+  <path d="M315 235 H385" class="line"/>
+  <path d="M655 235 H735" class="line"/>
+  <path d="M995 235 C1034 235 1034 312 1060 312" class="line"/>
+  <path d="M1060 438 C1020 538 900 660 592 628 C380 606 250 564 176 600 C116 628 80 600 70 572" class="soft-line"/>
+  <path d="M325 515 H385" class="line"/>
+  <path d="M655 515 H735" class="line"/>
+  <path d="M865 430 V338" class="line"/>
+  <path d="M520 338 V430" class="line"/>
+  <path d="M520 132 C520 94 864 94 865 132" class="soft-line"/>
+
+  <text x="327" y="220" class="small">JSON 요청</text>
+  <text x="667" y="220" class="small">예측 호출</text>
+  <text x="344" y="500" class="small">학습 데이터</text>
+  <text x="665" y="500" class="small">모델 저장</text>
+  <text x="882" y="384" class="small">로드</text>
+</svg>
+
